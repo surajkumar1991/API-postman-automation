@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "76701cab-3856-c45b-3fcd-2a14c0fa15f4",
+		"name": "Credit Management Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save Config",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a1c437e0-4048-456d-9bbe-179ed80ebdea",
+						"exec": [
+							"pm.test(\"Content-Type is mandatory\", function () {",
+							"    pm.request.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e03041e-39a8-47c7-890a-1cc90ba50403",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"source\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "kamlesh",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "kamlesh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productPartnerMappings\": [\r\n    {\r\n      \"id\": 9,\r\n      \"productId\": 4,\r\n      \"partnerId\": 1,\r\n      \"chargingDependOnSmsDelivery\": false,\r\n      \"optOutSmsEnabled\": false,\r\n      \"preRenewalSmsEnabled\": false,\r\n      \"partnerConsentParserEndpoint\": \"viu.com\",\r\n      \"partnerConsentUrlGenerationEndpoint\": \"viu.com\",\r\n      \"dateFormat\": \"DD/MM/YYYY\",\r\n      \"operationType\": \"Update\",\r\n      \"blacklistApplicable\": false,\r\n      \"validityFromPartner\": false,\r\n      \"blacklistValidity\": 0,\r\n      \"cooldownApplicable\": false,\r\n      \"cooldownValidity\": 24,\r\n      \"timeUnit\": \"HOUR\",\r\n      \"stepUpChargingApplicable\": false,\r\n      \"allowedFreeTrialCount\": 0,\r\n      \"countries\": [\r\n        \"IN\"\r\n      ],\r\n      \"displayRenewalConsent\": false,\r\n      \"billingUserId\": \"PARTNER_USER_ID\",\r\n      \"deactivationAllowedOffNetwork\": false,\r\n      \"contentAccessAllowedOffNetwork\": false,\r\n      \"deactivationAllowedPlatforms\": [\r\n        \"Website\",\r\n        \"Android\",\r\n        \"iOS\"\r\n      ]\r\n    },\r\n\r\n    {\r\n      \"id\": 10,\r\n      \"productId\": 4,\r\n      \"partnerId\": 1,\r\n      \"chargingDependOnSmsDelivery\": false,\r\n      \"optOutSmsEnabled\": false,\r\n      \"preRenewalSmsEnabled\": false,\r\n      \"partnerConsentParserEndpoint\": \"viu.com\",\r\n      \"partnerConsentUrlGenerationEndpoint\": \"viu.com\",\r\n      \"dateFormat\": \"DD/MM/YYYY\",\r\n      \"operationType\": \"Delete\",\r\n      \"blacklistApplicable\": false,\r\n      \"validityFromPartner\": false,\r\n      \"blacklistValidity\": 0,\r\n      \"cooldownApplicable\": false,\r\n      \"cooldownValidity\": 24,\r\n      \"timeUnit\": \"HOUR\",\r\n      \"stepUpChargingApplicable\": false,\r\n      \"allowedFreeTrialCount\": 0,\r\n      \"countries\": [\r\n        \"IN\"\r\n      ],\r\n      \"displayRenewalConsent\": false,\r\n      \"billingUserId\": \"PARTNER_USER_ID\",\r\n      \"deactivationAllowedOffNetwork\": false,\r\n      \"contentAccessAllowedOffNetwork\": false,\r\n      \"deactivationAllowedPlatforms\": [\r\n        \"Website\",\r\n        \"Android\",\r\n        \"iOS\"\r\n      ]\r\n    }\r\n  ],\r\n  \"pricePoints\": [\r\n    {\r\n      \"billingCode\": \"4-1-IN-1000-1548397933983\",\r\n      \"price\": 100,\r\n      \"currency\": \"USD\",\r\n      \"validity\": 1,\r\n      \"noOfCredits\": 1111,\r\n      \"appId\": 0,\r\n      \"ujId\": 0,\r\n      \"itemId\": 0,\r\n      \"itemTypeId\": 1,\r\n      \"balanceCheckRequired\": true,\r\n      \"fallbackApplicable\": false,\r\n      \"freeTrialApplicable\": false,\r\n      \"isFreeTrial\": true,\r\n      \"exclusionPeriod\": 9999999,\r\n      \"autoRenewalApplicable\": false,\r\n      \"status\": \"active\",\r\n      \"contentAccessPostDeactivation\": false,\r\n      \"noOfDaysContentAccessAllowInParking\": 1111,\r\n      \"noOfDaysContentAccessAllowInSuspend\": 11,\r\n      \"parkingPeriod\": 11,\r\n      \"suspendPeriod\": 11,\r\n      \"activationCoolDownPeriod\": 11,\r\n      \"productId\": 4,\r\n      \"partnerId\": 1,\r\n      \"countryCode\": \"IN\",\r\n      \"operationType\": \"Update\",\r\n      \"actInitValidity\": 11,\r\n      \"deactivationRetryValidity\": 11,\r\n      \"notificationWaitPeriod\": 11,\r\n      \"timeUnit\": \"HOUR\",\r\n      \"planId\": \"Premium Plus\",\r\n      \"master\": false\r\n    },\r\n    {\r\n      \"billingCode\": \"4-2-IN-1000-1548397933983\",\r\n      \"price\": 100,\r\n      \"currency\": \"USD\",\r\n      \"validity\": 1,\r\n      \"noOfCredits\": 1111,\r\n      \"appId\": 0,\r\n      \"ujId\": 0,\r\n      \"itemId\": 0,\r\n      \"itemTypeId\": 1,\r\n      \"balanceCheckRequired\": true,\r\n      \"fallbackApplicable\": false,\r\n      \"freeTrialApplicable\": false,\r\n      \"isFreeTrial\": true,\r\n      \"exclusionPeriod\": 9999999,\r\n      \"autoRenewalApplicable\": false,\r\n      \"status\": \"active\",\r\n      \"contentAccessPostDeactivation\": false,\r\n      \"noOfDaysContentAccessAllowInParking\": 1111,\r\n      \"noOfDaysContentAccessAllowInSuspend\": 11,\r\n      \"parkingPeriod\": 11,\r\n      \"suspendPeriod\": 11,\r\n      \"activationCoolDownPeriod\": 11,\r\n      \"productId\": 4,\r\n      \"partnerId\": 1,\r\n      \"countryCode\": \"IN\",\r\n      \"operationType\": \"Delete\",\r\n      \"actInitValidity\": 11,\r\n      \"deactivationRetryValidity\": 11,\r\n      \"notificationWaitPeriod\": 11,\r\n      \"timeUnit\": \"HOUR\",\r\n      \"planId\": \"Premium Plus\",\r\n      \"master\": false\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/credit-management-service/config/saveProduct",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"credit-management-service",
+						"config",
+						"saveProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Prometheus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/credit-management-service/prometheus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"credit-management-service",
+						"prometheus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Subscription credit with data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5508cf83-dc60-462e-8b76-e7b26352c06b",
+						"exec": [
+							"pm.test(\"Content-Type is mandatory\", function () {",
+							"    pm.request.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a9488c2-3752-4778-8282-4b92f90c1835",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"source\");",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"planName\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/credit-management-service/usersubscriptions/{{subsid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"credit-management-service",
+						"usersubscriptions",
+						"{{subsid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Subscription-credit invalid data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5508cf83-dc60-462e-8b76-e7b26352c06b",
+						"exec": [
+							"pm.test(\"Content-Type is mandatory\", function () {",
+							"    pm.request.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.globals.set(\"subsid1\", 8153);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a9488c2-3752-4778-8282-4b92f90c1835",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"source\");",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"planName\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "subsid1",
+						"value": "8153",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/credit-management-service/usersubscriptions/{{subsid1}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"credit-management-service",
+						"usersubscriptions",
+						"{{subsid1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Subscription-credit res in exceed time  Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5508cf83-dc60-462e-8b76-e7b26352c06b",
+						"exec": [
+							"pm.test(\"Content-Type is mandatory\", function () {",
+							"    pm.request.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a9488c2-3752-4778-8282-4b92f90c1835",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"source\");",
+							"",
+							"pm.test[\"Body matches string\"] = responseBody.has(\"planName\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/credit-management-service/usersubscriptions/{{subsid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"credit-management-service",
+						"usersubscriptions",
+						"{{subsid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

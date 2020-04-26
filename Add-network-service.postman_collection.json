@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "8c3ab26c-c4ec-4441-9229-270fb631d7ab",
+		"name": "Add-network-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADNETWORK_SAVEADNETWORK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1eb4df30-9ae2-450e-bac8-99f94d45ce97",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"adNetworkId\": 7805,\r\n\"name\": \"TestAdnetwork\",\r\n\"retryLimit\": 1,\r\n\"requestParamName\": \"voluum_tidTooUa\",\r\n\"notificationUrl\": \"http://64.71.156.167:6060/conversion/{voluum_tidTooUa}/pixel.jpg\",\r\n\"httpMethod\": \"GET\",\r\n\"notifyOnActivity\": \"ALL\",\r\n\"status\": \"active\",\r\n\"churnNotificationUrl\": \"http://64.71.156.167:6060/conversion/{voluum_tidTooUa}/pixel.jpg\",\r\n\"sourceIdentifier\": \"D_KIM141\",\r\n\"operationType\": \"Create\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/ad-network-service/saveAdNetwork",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"ad-network-service",
+						"saveAdNetwork"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADNETWORK_SAVECOUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1eb4df30-9ae2-450e-bac8-99f94d45ce97",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"countryId\": 16,\r\n\"countryName\": \"IN\",\r\n\"countryCode\": \"IN\",\r\n\"timezone\": \"GMT\",\r\n\"currency\": \"INR\",\r\n\"operationType\": \"Create\"\r\n }"
+				},
+				"url": {
+					"raw": "http://{{URL}}/ad-network-service/saveCountry",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"ad-network-service",
+						"saveCountry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADNETWORK_SAVEPRODUCT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1eb4df30-9ae2-450e-bac8-99f94d45ce97",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"product\": {\r\n         \"productId\": 50266,\r\n         \"productName\": \"VIUTEST\",\r\n         \"productType\": \"OTT\",\r\n         \"storeType\": \"Full Store\",\r\n         \"url\": \"www.viu.com\",\r\n         \"context\": \"contextName\",\r\n         \"cassId\": 123,\r\n         \"encryptionEnable\": true,\r\n         \"encryptionValidityInMinutes\": 30,\r\n         \"callbackUrl\": \"www.viu.com\",\r\n         \"consentCancelUrl\": \"www.viu.com\",\r\n         \"errorUrl\": \"www.viu.com\",\r\n         \"description\": \"VIU Product\",\r\n         \"status\": \"ACTIVE\",\r\n         \"operationType\": \"Create\"\r\n     },\r\n     \"productPartnerMappings\": [\r\n         {\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"chargingDependOnSmsDelivery\": true,\r\n             \"optOutSmsEnabled\": true,\r\n             \"preRenewalSmsEnabled\": false,\r\n             \"partnerConsentParserEndpoint\": \"Parse EndPoint\",\r\n             \"partnerConsentUrlGenerationEndpoint\": \"Url Generation EndPoint\",\r\n             \"dateFormat\": \"dd-mm-yyyy\",\r\n             \"operationType\": \"Create\",\r\n             \"blacklistApplicable\": true,\r\n             \"validityFromPartner\": true,\r\n             \"blacklistValidity\": 180,\r\n             \"cooldownApplicable\": true,\r\n             \"cooldownValidity\": 3,\r\n             \"timeUnit\": \"HOUR\",\r\n             \"stepUpChargingApplicable\": false,\r\n             \"allowedFreeTrialCount\": 1\r\n         }\r\n     ],\r\n     \"productCountryMapping\": {\r\n         \"productId\": 50266,\r\n         \"countries\": [\r\n             {\r\n                 \"countryCode\": \"IN\",\r\n                 \"operationType\": \"Create\"\r\n             }\r\n         ]\r\n     },\r\n     \"smsConfigs\": [\r\n         {\r\n             \"smsConfigId\": 1,\r\n             \"type\": \"CONTENT_SMS\",\r\n             \"redirectionContext\": \"Redirection Context\",\r\n             \"defaultSmsLanguageId\": 1,\r\n             \"batchSize\": 100,\r\n             \"smsLength\": 100,\r\n             \"autoPlay\": false,\r\n             \"status\": \"active\",\r\n             \"criterias\": [\r\n                 {\r\n                     \"criteriaId\": 1,\r\n                     \"smsText\": \"SMS Text\",\r\n                     \"criterions\": [\r\n                         {\r\n                             \"criterionId\": 1,\r\n                             \"name\": \"activity\",\r\n                             \"operator\": \"==\",\r\n                             \"value\": \"Activation\",\r\n                             \"groupingOperator\": \"NONE\"\r\n                         }\r\n                     ],\r\n                     \"dateCoumputationCriterion\": {\r\n                         \"dateComputationCriterionId\": 1,\r\n                         \"name\": \"next_billing_date\",\r\n                         \"operator\": \"+\",\r\n                         \"value\": \"24\",\r\n                         \"unit\": \"HOUR\"\r\n                     }\r\n                 }\r\n             ],\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"operationType\": \"Create\"\r\n         }\r\n     ],\r\n     \"retry\": [\r\n         {\r\n             \"retryId\": 1,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"operationType\": \"Create\",\r\n             \"activityType\": \"ACTIVATION\",\r\n             \"maxRetryCount\": 10,\r\n             \"retryIntervalInMinutes\": 120,\r\n             \"attemptWindow\": \"7:00AM-2:00PM\",\r\n             \"typeOfCycle\": \"CALANDER_DAY\",\r\n             \"batchSize\": 0,\r\n             \"schedulingFrequencyInMinutes\": 100,\r\n             \"schedulingDays\": \"Monday,Tuesday\",\r\n             \"executingTimeWindow\": \"7:10-8:10,9:00-12:00\",\r\n             \"executingDays\": \"1101011\",\r\n             \"status\": \"active\",\r\n             \"actionDefaultEiligible\": false,\r\n             \"retryable\": true\r\n         }\r\n     ],\r\n     \"churnNotifications\": [\r\n         {\r\n             \"churnNotificationId\": 1,\r\n             \"typeOfChurn\": \"ALL\",\r\n             \"period\": \"24\",\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"operationType\": \"Create\"\r\n         }\r\n     ],\r\n     \"adNetworkNotifications\": [\r\n         {\r\n             \"adNetworkNotificationId\": 50266,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"id\": 5,\r\n             \"paidPercentage\": 100,\r\n             \"freePercentage\": 100,\r\n             \"winbackPercentage\": 100,\r\n             \"operationType\": \"Create\"\r\n         },\r\n         {\r\n             \"adNetworkNotificationId\": 0,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"id\": 5,\r\n             \"paidPercentage\": 100,\r\n             \"freePercentage\": 100,\r\n             \"winbackPercentage\": 100,\r\n             \"operationType\": \"Create\"\r\n         }\r\n     ],\r\n     \"pricePoints\": [\r\n         {\r\n             \"billingCode\": \"BC50266\",\r\n             \"price\": 100.0,\r\n             \"description\": \"Price Point 1\",\r\n             \"validity\": 30,\r\n             \"noOfCredits\": 99999,\r\n             \"serviceId\": \"1234\",\r\n             \"appId\": 1,\r\n             \"ujId\": 1,\r\n             \"itemId\": 1,\r\n             \"itemTypeId\": 0,\r\n             \"balanceCheckRequired\": true,\r\n             \"fallbackApplicable\": false,\r\n             \"freeTrialApplicable\": true,\r\n             \"fallbackPpBillingCode\": \"BC50266\",\r\n             \"freeTrialBillingCode\": \"BC50266\",\r\n             \"freeTrialDays\": 0,\r\n             \"exclusionPeriod\": 60,\r\n             \"autoRenewalApplicable\": true,\r\n             \"status\": \"active\",\r\n             \"contentAccessPostDeactivation\": true,\r\n             \"noOfDaysContentAccessAllowInParking\": 10,\r\n             \"noOfDaysContentAccessAllowInSuspend\": 0,\r\n             \"parkingPeriod\": 10,\r\n             \"suspendPeriod\": 10,\r\n             \"activationCoolDownPeriod\": 10,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"operationType\": \"Create\",\r\n             \"actInitValidity\": 5,\r\n             \"deactivationRetryValidity\": 5,\r\n             \"notificationWaitPeriod\": 1,\r\n             \"timeUnit\": \"YEAR\"\r\n         }\r\n     ],\r\n     \"stateConfigs\": [\r\n         {\r\n             \"stateConfigId\": 1,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"operationType\": \"Create\",\r\n             \"pricePoint\": \"BC01\",\r\n             \"actInitDuration\": 100,\r\n             \"activeDuration\": 30,\r\n             \"parkingDuration\": 10,\r\n             \"graceDuration\": 12,\r\n             \"suspendDuration\": 10,\r\n             \"blacklistDuration\": 10\r\n         }\r\n     ],\r\n     \"blackouts\": [\r\n         {\r\n             \"blackoutId\": 1,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"period\": \"'7:30-10:30,23:00-5:00'\",\r\n             \"operationType\": \"Create\",\r\n             \"blackoutWindow\": \"'5:20-7:40'\"\r\n         }\r\n     ],\r\n     \"activityFlows\": [\r\n         {\r\n             \"activityFlowId\": 1,\r\n             \"productId\": 50266,\r\n             \"partnerId\": 50266,\r\n             \"countryCode\": \"IN\",\r\n             \"name\": \"Activation\",\r\n             \"billingCode\": \"BC50266\",\r\n             \"mode\": \"WAP\",\r\n             \"actions\": [\r\n                 {\r\n                     \"actionId\": 1,\r\n                     \"action\": \"CONSENT\",\r\n                     \"flowType\": \"VUCLIP_CONSENT\"\r\n                 }\r\n             ],\r\n             \"operationType\": \"Create\"\r\n         }\r\n     ]\r\n }"
+				},
+				"url": {
+					"raw": "http://{{URL}}/ad-network-service/saveProduct",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"ad-network-service",
+						"saveProduct"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,2658 @@
+{
+	"info": {
+		"_postman_id": "bc20710f-45fe-425d-8292-deefea0d2d27",
+		"name": "configuration-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "COUNTRYTESTS_ST_SAVE_COUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "447e8a7c-93f8-433d-9dcc-702314264db5",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "defa450f-f7f7-4327-b30a-bffb8f20eb9b",
+						"exec": [
+							"pm.test(\"Content-Type is mandatory\", function () {",
+							"    pm.request.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"countryName\": \"Nepal\",\r\n    \"countryCode\": \"NE\",\r\n    \"timezone\": \"GMT\",\r\n    \"currency\": \"NPR\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/countries",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "STATECONFIGTEST_ST_SAVE_STATECONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b141a66a-3a19-4f32-adc6-82b16fe07f52",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify stateConfig Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.stateConfig) !== null;",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify Message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"pricePoint\": \"1\",\r\n    \"actInitDuration\": 1,\r\n    \"activeDuration\": 1,\r\n    \"parkingDuration\": 1,\r\n    \"graceDuration\": 1,\r\n    \"suspendDuration\": 1,\r\n    \"blacklistDuration\": 1\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/stateConfigs",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"stateConfigs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "STATECONFIGTEST_ST_GET_STATECONFIG_PRODUCT_PARTNER_COUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e05b0477-ed9f-4bde-874d-737f590f6246",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/stateConfigs?productId=1&partnerId=2&countries=1",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"stateConfigs"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						},
+						{
+							"key": "partnerId",
+							"value": "2"
+						},
+						{
+							"key": "countries",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SMSCONFIGTESTS_ST_SAVE_SMSCONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8ab9ef0-7205-4341-8718-d8dc8456fd10",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});",
+							"pm.test(\"Verify smsConfig Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.smsConfig) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"type\": \"ACTIVATION_SMS\",\r\n    \"redirectionContext\": \"test\",\r\n    \"defaultSmsLanguageId\": \"en\",\r\n    \"smsLength\": 128,\r\n    \"isAutoPlay\": true,\r\n    \"status\": \"active\",\r\n    \"criterias\": [\r\n        {\r\n            \"smsText\": \"TestSMS\",\r\n            \"criteria\": [\r\n                {\r\n                    \"criterionList\": [\r\n                        {\r\n                            \"name\": \"test\",\r\n                            \"operator\": \"=\",\r\n                            \"value\": \"1\",\r\n                            \"groupingOperator\": \"=\"\r\n                        }\r\n                    ],\r\n                    \"criterionGroupingOperator\": \"=\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/smsConfigs",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"smsConfigs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SMSCONFIGTESTS_ST_UPDATE_SMSCONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a79e9c3e-cefa-40f4-839d-02231218fae3",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});",
+							"pm.test(\"Verify smsConfig Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.smsConfig) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"smsConfigId\": 1,\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"type\": \"ACTIVATION_SMS\",\r\n    \"redirectionContext\": \"test\",\r\n    \"defaultSmsLanguageId\": \"en\",\r\n    \"smsLength\": 254,\r\n    \"isAutoPlay\": false,\r\n    \"status\": \"active\",\r\n    \"criterias\": [\r\n        {\r\n            \"smsText\": \"TestSMS\",\r\n            \"criteria\": [\r\n                {\r\n                    \"criterionList\": [\r\n                        {\r\n                            \"name\": \"test\",\r\n                            \"operator\": \"=\",\r\n                            \"value\": \"1\",\r\n                            \"groupingOperator\": \"=\"\r\n                        }\r\n                    ],\r\n                    \"criterionGroupingOperator\": \"=\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/smsConfigs",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"smsConfigs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SMSCONFIGTESTS_ST_GET_SMSCONFIG_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f822030-1cc3-494a-a920-8ce641b96baf",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify criterias Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.criterias) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/smsConfigs/1",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"smsConfigs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SMSCONFIGTESTS_ST_GET_SMSCONFIG_PRODUCT_PARTNER_COUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a98b8289-f4c8-4c5d-a606-cc6ad46c550b",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify criterias Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.criterias) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/smsConfigs?productId=1&partnerId=2&countries=1",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"smsConfigs"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						},
+						{
+							"key": "partnerId",
+							"value": "2"
+						},
+						{
+							"key": "countries",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RETRYCONFIGTESTS_ST_SAVE_RETRYCONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88024abe-7eeb-4e10-a93d-9f69f3a057ef",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"active\",\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"activityType\": \"ACTIVATION_RETRY\",\r\n    \"maxRetryCount\": 0,\r\n    \"retryIntervalInMinutes\": 30,\r\n    \"attemptWindow\": null,\r\n    \"typeOfCycle\": \"HOUR\",\r\n    \"batchSize\": 500,\r\n    \"schedulingFrequencyInMinutes\": 120,\r\n    \"schedulingDays\": \"1111111\",\r\n    \"executingTimeWindow\": \"00:01:00-23:59:00\",\r\n    \"executingDays\": \"1111111\",\r\n    \"actionDefaultEiligible\": true,\r\n    \"retryable\": true,\r\n    \"dateCoumputationCriteria\": {\r\n        \"name\": \"end_date\",\r\n        \"operator\": \"EVERY\",\r\n        \"value\": \"1\",\r\n        \"unit\": \"HOUR\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/retryConfigs",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"retryConfigs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RETRYCONFIGTESTS_ST_GET_RETRYCONFIG_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "357baf66-a3a0-406e-b096-c1a31ee25405",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify dateCoumputationCriteria Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.value) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/retryConfigs/89",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"retryConfigs",
+						"89"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RETRYCONFIGTESTS_ST_DELETE_RETRYCONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe753128-3b61-43ae-a207-99507edbef04",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/retryConfigs/89",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"retryConfigs",
+						"89"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PARTNERTESTS_ST_SAVE_PARTNER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45aee110-9876-49dd-9627-1bbb40c376a6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify partner Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.partner) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"partnerName\": \"TestPartner\",\r\n    \"description\": \"Etisalat EG\",\r\n    \"status\": \"active\",\r\n    \"autoRenewalApplicable\": false,\r\n    \"type\": \"telco\",\r\n    \"stepUpCharging\": true,\r\n    \"userIdentifier\": \"user3\",\r\n    \"balanceCheckRequired\": true,\r\n    \"activationManagedBy\": \"Vuclip\",\r\n    \"renewalManagedBy\": \"Vuclip\",\r\n    \"deactivationManagedBy\": \"Vuclip\",\r\n    \"hasMoActivations\": true,\r\n    \"hasMoDeactivations\": true,\r\n    \"partnerActivationConsentParserUrl\": \"Vuclip URI\",\r\n    \"partnerDeactivationConsentParserUrl\": \"Vuclip URI\",\r\n    \"partnerActivationConsentInitiationUrl\": \"Vuclip URI\",\r\n    \"partnerDeactivationConsentInitiationUrl\": \"Vuclip URI\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/partners",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"partners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVITYFLOWCONFIGTESTS_ST_SAVE_ACTIVITY_FLOW",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87a93496-bc9d-44d4-a05f-23dffaa23ce2",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});",
+							"pm.test(\"Verify activityFlow Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.activityFlow) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"name\": \"ACTIVATION\",\r\n    \"billingCode\": null,\r\n    \"mode\": \"ANDROID_APP\",\r\n    \"actions\": [\r\n        {\r\n            \"action\": \"CONSENT\",\r\n            \"flowType\": \"VUCLIP_CONSENT\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/activityFlows",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"activityFlows"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADNETWORKTESTS_ST_SAVE_ADNETWORK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a5556049-a814-443f-9b80-f43eb6c84f8c",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.value).to.eql(100);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify adNetwork Not Null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.adNetwork) !== null;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ad Network 6\",\r\n    \"retryLimit\": 4,\r\n    \"requestParamName\": \"voluum_tid1\",\r\n    \"notificationUrl\": \"notification url\",\r\n    \"httpMethod\": \"GET\",\r\n    \"notifyOnActivity\": \"ALL\",\r\n    \"status\": \"active\",\r\n    \"churnNotificationUrl\": \"churn notification url\",\r\n    \"sourceIdentifier\": \"dummy1\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/adNetworks",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"adNetworks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CONFIGTEST_ST_GET_COUNTRY_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cc94b3e-f0ec-4c28-a6d3-2747c7edc565",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify Successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "charset",
+						"value": "UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "Email",
+						"value": "configtest@vuclip.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/countries/Qatar",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"countries",
+						"Qatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPCONFIGTESTS_ST_SAVE_OTPCONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b002e04f-113a-4346-ac7a-5d252c603494",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"isInternalOTP\": true,\r\n    \"isChargingInvolved\": false,\r\n    \"otpLength\": 4,\r\n    \"otpExpiryInMinutes\": 2,\r\n    \"status\": \"active\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/otp",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTPARTNERMAPPING_ST_SAVE_PRODUCTPARTNERMAPPING",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "163162ff-8ce4-44ff-85bb-49bbe6994a68",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"ZAIN_JORDAN\",\r\n    \"chargingDependOnSmsDelivery\": true,\r\n    \"optOutSmsEnabled\": true,\r\n    \"preRenewalSmsEnabled\": true,\r\n    \"partnerConsentParserEndpoint\": \"fillInURL\",\r\n    \"partnerConsentUrlGenerationEndpoint\": \"fillInURL\",\r\n    \"dateFormat\": \"DD-MMM-YYYY\",\r\n    \"blacklistApplicable\": true,\r\n    \"validityFromPartner\": true,\r\n    \"blacklistValidity\": 1,\r\n    \"cooldownApplicable\": true,\r\n    \"cooldownValidity\": 1,\r\n    \"timeUnit\": \"HOUR\",\r\n    \"stepUpChargingApplicable\": true,\r\n    \"allowedFreeTrialCount\": 1,\r\n    \"countries\": [\r\n        \"India\"\r\n    ],\r\n    \"displayRenewalConsent\": true,\r\n    \"billingUserId\": \"USERID\",\r\n    \"deactivationAllowedOffNetwork\": true,\r\n    \"contentAccessAllowedOffNetwork\": true,\r\n    \"deactivationAllowedPlatforms\": [\r\n        \"Android\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/productPartnerMappings",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"productPartnerMappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTPARTNERMAPPING_ST_GET_PRODUCTPARTNERMAPPING_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1646dff-16b1-42b2-865b-964f04a314cc",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/productPartnerMappings/57",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"productPartnerMappings",
+						"57"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTPARTNERMAPPING_ST_GET_PRODUCTPARTNERMAPPING_PRODUCT_PARTNER_COUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3682e143-df74-44dc-ba33-61a635eab0e9",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/productPartnerMappings/countries?productId=1&partnerId=36",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"productPartnerMappings",
+						"countries"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						},
+						{
+							"key": "partnerId",
+							"value": "36"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTPARTNERMAPPING_ST_GET_PARTNERS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "928a9ebf-bf90-4794-991d-79dd1f648743",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/productPartnerMappings/partners?productId=1",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"productPartnerMappings",
+						"partners"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTPARTNERMAPPING_ST_DELETE_PRODUCTPARTNERMAPPING",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6fdb51c7-6c1a-484f-ae88-c356c61ee347",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/productPartnerMappings/4",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"productPartnerMappings",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRICEPOINTTESTS_ST_SAVE_PRICEPOINT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ac37c16-c7b1-49cc-bc1e-6d0dbd0be90b",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 101.0,\r\n    \"currency\": \"INR\",\r\n    \"description\": \"description\",\r\n    \"validity\": 100,\r\n    \"noOfCredits\": 100,\r\n    \"serviceId\": \"serviceId\",\r\n    \"appId\": 10,\r\n    \"ujId\": 10,\r\n    \"itemId\": 10,\r\n    \"itemTypeId\": \"PRODUCT\",\r\n    \"balanceCheckRequired\": true,\r\n    \"fallbackApplicable\": true,\r\n    \"freeTrialApplicable\": true,\r\n    \"exclusionPeriod\": 99,\r\n    \"autoRenewalApplicable\": true,\r\n    \"status\": \"active\",\r\n    \"contentAccessPostDeactivation\": true,\r\n    \"noOfDaysContentAccessAllowInParking\": 10,\r\n    \"noOfDaysContentAccessAllowInSuspend\": 10,\r\n    \"parkingPeriod\": 10,\r\n    \"suspendPeriod\": 10,\r\n    \"activationCoolDownPeriod\": 10,\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"actInitValidity\": 10,\r\n    \"deactivationRetryValidity\": 10,\r\n    \"notificationWaitPeriod\": 10,\r\n    \"timeUnit\": \"HOUR\",\r\n    \"planId\": \"planId\",\r\n    \"master\": true,\r\n    \"freeTrial\": true,\r\n    \"actualPrice\": 17.0,\r\n    \"actualCurrency\": \"INR\",\r\n    \"partnerSpecificValues\": \"payType=1\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}//configuration-service/pricePoints",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"",
+						"configuration-service",
+						"pricePoints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRICEPOINTTESTS_ST_UPDATE_PRICEPOINT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "521c6b80-f144-449f-9ba0-c925834927f5",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Success\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"billingCode\": \"1210-1129-IN-1010-1585313428338\",\r\n    \"price\": 501.0,\r\n    \"currency\": \"INR\",\r\n    \"description\": \"updated_description\",\r\n    \"validity\": 101,\r\n    \"noOfCredits\": 100,\r\n    \"serviceId\": \"serviceId\",\r\n    \"appId\": 10,\r\n    \"ujId\": 10,\r\n    \"itemId\": 10,\r\n    \"itemTypeId\": \"PRODUCT\",\r\n    \"balanceCheckRequired\": true,\r\n    \"fallbackApplicable\": true,\r\n    \"freeTrialApplicable\": true,\r\n    \"exclusionPeriod\": 99,\r\n    \"autoRenewalApplicable\": true,\r\n    \"status\": \"active\",\r\n    \"contentAccessPostDeactivation\": true,\r\n    \"noOfDaysContentAccessAllowInParking\": 10,\r\n    \"noOfDaysContentAccessAllowInSuspend\": 10,\r\n    \"parkingPeriod\": 10,\r\n    \"suspendPeriod\": 10,\r\n    \"activationCoolDownPeriod\": 10,\r\n    \"productName\": \"VIU\",\r\n    \"partnerName\": \"PayTM\",\r\n    \"countryName\": \"India\",\r\n    \"operationType\": \"update\",\r\n    \"actInitValidity\": 10,\r\n    \"deactivationRetryValidity\": 10,\r\n    \"notificationWaitPeriod\": 10,\r\n    \"timeUnit\": \"HOUR\",\r\n    \"master\": true,\r\n    \"freeTrial\": true,\r\n    \"actualPrice\": 17.0,\r\n    \"actualCurrency\": \"INR\",\r\n    \"partnerSpecificValues\": \"payType=1\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/pricePoints",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"pricePoints"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRICEPOINTTESTS_ST_GET_PRICEPOINT_BILLINGCODE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfeec50f-b0be-4eb0-b4bc-bd2390bb56e8",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/pricePoints/1210-1129-IN-1010-1585313428338",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"pricePoints",
+						"1210-1129-IN-1010-1585313428338"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRICEPOINTTESTS_ST_DELETE_PRICEPOINT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df113e39-dc9a-486c-a85e-a21fa64cc854",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/pricePoints/1210-1129-IN-1010-1585313428338",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"pricePoints",
+						"1210-1129-IN-1010-1585313428338"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CONFIGTEST_ST_GET_ALL_COUNTRIES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2347d1b-c0e0-4262-9bed-0c054194cf36",
+						"exec": [
+							"pm.test(\"Response time is less than 50000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(50000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/countries/countries",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"countries",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTTEST_ST_SAVE_PRODUCT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba2779d5-527d-4761-bda0-57722b2e5ae3",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"COLPRODUCT\",\r\n    \"productType\": \"OTTT\",\r\n    \"storeType\": \"SUBSCRIPTION_STORE\",\r\n    \"url\": \"http://www.viu.com\",\r\n    \"encryptionValidityInMinutes\": 0,\r\n    \"callbackUrl\": \"http://www.viu.com\",\r\n    \"consentCancelUrl\": \"http://www.viu.com\",\r\n    \"errorUrl\": \"http://www.viu.com\",\r\n    \"status\": \"active\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/products",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTTEST_ST_GET_PRODUCT_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8071cc89-c859-439c-8ebe-ebb5f61521a9",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/products/1",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPCONFIGTESTS_ST_GET_OTPCONFIG_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08dc4f20-b879-432c-a563-96666d73118f",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/otp/6",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"otp",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPCONFIGTESTS_ST_DELETE_OTPCONFIG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9505e82c-84f8-428a-bcfe-305f7f30d7b1",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/otp/6",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"otp",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVITYFLOWCONFIGTESTS_ST_GET_ACTIVITY_FLOW_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc43b4ff-55ca-42aa-ae6c-80121c40a39e",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/activityFlows/292",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"activityFlows",
+						"292"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVITYFLOWCONFIGTESTS_PRODUCTID_PARTNERID_COUNTRIES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91f86688-e81b-4caf-a7a9-9ed24a193173",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/activityFlows?productId=1&partnerId=2&countries=1",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"activityFlows"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "1"
+						},
+						{
+							"key": "partnerId",
+							"value": "2"
+						},
+						{
+							"key": "countries",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVITYFLOWCONFIGTESTS_ST_DELETE_ACTIVITY_FLOW",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df385992-80f4-4035-9402-f89b52339fad",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/activityFlows/15",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"activityFlows",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COUNTRYTESTS_ST_DELETE_COUNTRY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f696ee98-0b61-419b-9683-65348541c6bd",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.successful).to.eql(true);",
+							"});",
+							"pm.test(\"Verify responseCode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.responseCode).to.eql(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/countries?countryName=Nepal",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"countries"
+					],
+					"query": [
+						{
+							"key": "countryName",
+							"value": "Nepal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTTEST_ST_GET_ALL_PRODUCTS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8b112d3-98e4-49a7-9a0d-68fd5f7cd47a",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/products/",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "STATECONFIGTEST_ST_GET_STATECONFIG_ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3cc9faf8-4498-45d8-8cb8-1f06cbd51591",
+						"exec": [
+							"pm.test(\"Response time is less than 10000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImtpZCI6IjAwMDEifQ.eyJuYW1lIjoiYmFwaSIsInN1YiI6ImFwaSIsImV4cCI6IjE2MDk1MDYwMTYiLCJpc3MiOiJicjIifQ.Sw_Iu-aWXhY0ffcCC6pw5hRKQYDwKdWHPd44iYfcDhI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "charset",
+						"type": "text",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Email",
+						"type": "text",
+						"value": "configtest@vuclip.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{URL}}/configuration-service/stateConfigs/2",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"configuration-service",
+						"stateConfigs",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

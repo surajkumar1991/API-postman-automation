@@ -1,0 +1,2015 @@
+{
+	"info": {
+		"_postman_id": "8fe72dee-31e6-4beb-8e28-ff0b9ce5f8b4",
+		"name": "Core-Activity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BlockTests-ACT_INIT_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fbf8934-9f0f-49b1-81f1-b2be97149608",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify block type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5d8d4d65-5ce7-438d-a09b-273441bcc502",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"ram\",\r\n         \"partnerUserId\": \"ram\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 101,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-NEW_USER_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee586e14-71d4-4bff-a185-d73a37c78f1d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify blockType\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"21234567890\",\r\n         \"partnerUserId\": \"21234567890\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 101,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-ACTIVE_USER_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee586e14-71d4-4bff-a185-d73a37c78f1d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify blockType\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"BT2\",\r\n         \"partnerUserId\": \"BT2\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 2,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-PARKING_USER_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee586e14-71d4-4bff-a185-d73a37c78f1d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify blockType\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"1234567890\",\r\n         \"partnerUserId\": \"1234567890\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 101,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-SUSPEND_USER_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e472704a-3223-4480-a4bb-8d38832defcb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify block type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"ram\",\r\n         \"partnerUserId\": \"ram\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 101,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-DCT_INIT_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c2671a7-7d29-4971-8265-f8ebb9239466",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify block type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"7654321\",\r\n         \"partnerUserId\": \"7654321\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 101,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-INACTIVE_USER_BLOCK_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bad47870-8a87-4e98-a5ce-3329dbe93151",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify block type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.blockedUserData.blockType).to.eql(\"BLACKLIST\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"1234567906\",\r\n         \"partnerUserId\": \"1234567906\"\r\n     },\r\n     \"productId\": 1,\r\n     \"partnerId\": 101,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTests-BAD_REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c577252-4452-4fb5-9151-dd15afb6f3b1",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userDetails\": {\r\n         \"userId\": \"1234567906\",\r\n         \"partnerUserId\": \"1234567906\"\r\n     },\r\n     \"productId\": null,\r\n     \"partnerId\": null,\r\n     \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/block",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-ACT_INIT_WO_VALIDITY_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3dfa202f-0cad-475a-a225-eb7894afb202",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify status from responseVO\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"itemInfo\": {\r\n        \"itemId\": \"1\",\r\n        \"itemTypeId\": \"12\"\r\n    },\r\n    \"consentInfo\": {\r\n        \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX2017121810262453465772553\",\r\n        \"consentPageImageUrl\": \"http://www.google.com/\",\r\n        \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n    },\r\n    \"userChargingInfo\": {\r\n        \"userId\": \"dsffsdfdsf\",\r\n        \"msisdn\": \"645874356876486\"\r\n    },\r\n    \"mode\": \"WAP\",\r\n    \"billingCode\": \"1-2-IN-10-1553850407337\",\r\n    \"dirtNetworkParams\": \"kp=48578745513\",\r\n    \"source\": \"ACT_INIT_WO_VALIDITY_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-NEW_USER_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19c72be0-432f-4fd4-98b9-0fa53968467c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"1234567891\",\r\n         \"partnerUserId\": \"1234567891\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"1-2-IN-10-1553850407337\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"NEW_USER_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-DCT_WITH_VALIDITY_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "062e635d-a921-4174-be4a-4b7aa6bf2b63",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"1234567901\",\r\n         \"partnerUserId\": \"1234567901\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"1-2-IN-10-1553850407337\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"DCT_WITH_VALIDITY_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-DCT_WO_VALIDITY_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c47e10b-2a6f-4df2-b247-8d4c620c35da",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"1234567900\",\r\n         \"partnerUserId\": \"1234567900\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"1-2-IN-10-1553850407337\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"DCT_WO_VALIDITY_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-ACT_INIT_WITH_VALIDITY_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b758a07-3651-4d50-8bf4-6230376e6707",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"Activation in progress.\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"USR06\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"FAIL\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"CU1\",\r\n         \"partnerUserId\": \"CU1\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"1-2-IN-990-1537461295325\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"ACT_INIT_WITH_VALIDITY_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-ACT_WITH_VALIDITY_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee76d493-2e55-4bbc-bcaa-9cbfccc2ab0c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"User already subscribed.\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"USR01\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"FAIL\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"t12\",\r\n         \"partnerUserId\": \"t12\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"1-2-IN-5990-1537461295398\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"ACT_WITH_VALIDITY_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-ACT_WO_VALIDITY_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35dcfd94-f5e9-4c3d-835a-d973a5adbc98",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"User already subscribed.\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"USR01\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"FAIL\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"t14\",\r\n         \"partnerUserId\": \"t14\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"1-2-IN-5990-1537461295398\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"ACT_WO_VALIDITY_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeUserTests-BLACKLISTED_PP01_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9562cf0a-090d-4419-88df-c592f84b1d62",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"User is blacklisted\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"BLACKLISTED\");",
+							"});",
+							"",
+							"pm.test(\"Verify status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"FAIL\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"itemInfo\": {\r\n         \"itemId\": \"1\",\r\n         \"itemTypeId\": \"12\"\r\n     },\r\n     \"consentInfo\": {\r\n         \"callBackUrl\": \"http://64.71.156.241/baas/CGController/consentParser/58?transid=TX20171218102625772553\",\r\n         \"consentPageImageUrl\": \"http://www.google.com/\",\r\n         \"consentPageNoUrl\": \"http://192.168.250.72:8080/home\"\r\n     },\r\n     \"userChargingInfo\": {\r\n         \"userId\": \"1234567897\",\r\n         \"partnerUserId\": \"1234567897\"\r\n     },\r\n     \"mode\": \"WAP\",\r\n     \"billingCode\": \"b1\",\r\n     \"dirtNetworkParams\": \"kp=48578745510\",\r\n     \"source\": \"BLACKLISTED_PP01_SUCCESS\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/chargeUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"chargeUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-DCT_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9bf316eb-c1de-4488-871c-4de35ccd5c88",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"User already deactivated.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"USR02\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"FAIL\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"1234567906\",\r\n    \"partnerUserId\": \"1234567906\",\r\n    \"productId\": 1,\r\n    \"itemId\": \"0\",\r\n    \"itemTypeId\": \"0\",\r\n    \"subscriptionId\": 140333,\r\n    \"mode\": \"ANDROID_APP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-DCT_INIT_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1fe1f143-5c5c-4c3a-9544-fb03779457a2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"deactivation in progress.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"usr07\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"fail\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"1234567905\",\r\n    \"partnerUserId\": \"1234567905\",\r\n    \"productId\": 1,\r\n    \"itemId\": \"1\",\r\n    \"itemTypeId\": \"12\",\r\n    \"subscriptionId\": null,\r\n    \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-SUSPEND_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d1f7092-386c-4a4c-8400-b53e86e7d282",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify subscription status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userStatus.subscriptionStatus).to.eql(\"DCT_INIT\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify subscription summary\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userStatus.summary).to.eql(\"DEACTIVATION_IN_PROGRESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify partner Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userStatus.partnerId).to.eql(\"101\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify product Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userStatus.productId).to.eql(\"1\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify user Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userStatus.userId).to.eql(\"1234567904\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify partner userId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userStatus.partnerUserId).to.eql(null);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"1234567904\",\r\n    \"partnerUserId\": \"1234567904\",\r\n    \"productId\": 1,\r\n    \"itemId\": \"1\",\r\n    \"itemTypeId\": \"12\",\r\n    \"subscriptionId\": null,\r\n    \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-PARKING_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9e686db-b4ab-46fb-b5b8-90cea768e9c1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"1234567903\",\r\n    \"partnerUserId\": \"1234567903\",\r\n    \"productId\": 1,\r\n    \"itemId\": \"1\",\r\n    \"itemTypeId\": \"12\",\r\n    \"subscriptionId\": null,\r\n    \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-NEW_USER_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "381e3353-bd10-408e-9e0e-17f766ef4537",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"Data not found in cache for user.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"USR13\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"FAIL\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"123456789012\",\r\n    \"partnerUserId\": \"123456789012\",\r\n    \"productId\": 1,\r\n    \"itemId\": \"1\",\r\n    \"itemTypeId\": \"12\",\r\n    \"subscriptionId\": null,\r\n    \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-ACT_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ae16fab-53d9-4a16-9bb2-6913184b8966",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userId\": \"1234567902\",\r\n     \"partnerUserId\": \"1234567902\",\r\n     \"productId\": 1,\r\n     \"itemId\": \"1\",\r\n     \"itemTypeId\": \"12\",\r\n     \"subscriptionId\": null,\r\n     \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeactivateUserTests-ACT_INIT_DEACTIVATE_SUCCESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "132a15f0-3a02-4c47-864b-553a464f6762",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.message).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.responseCode).to.eql(\"200\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.resultVO.status).to.eql(\"SUCCESS\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"userId\": \"1234567890\",\r\n     \"partnerUserId\": \"1234567890\",\r\n     \"productId\": 1,\r\n     \"itemId\": \"1\",\r\n     \"itemTypeId\": \"12\",\r\n     \"subscriptionId\": null,\r\n     \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeActivateUserTests-BAD_REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ab05e87-c466-4913-b8f2-5155440b2d81",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"userId\": \"1234567906\",\r\n    \"partnerUserId\": \"1234567906\",\r\n    \"productId\": null,\r\n    \"itemId\": \"1\",\r\n    \"itemTypeId\": \"12\",\r\n    \"subscriptionId\": null,\r\n    \"mode\": \"WAP\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/deactivateUser",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"deactivateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnBlockTests-UNBLOCK_BLOCKED_USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c1d0a04-c5cc-4f37-a832-f9bdaf84b4d0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.successful).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.message).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.responseCode).to.eql(\"200\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"21234567890\",\r\n    \"partnerUserId\": \"21234567890\",\r\n    \"productId\": 1,\r\n    \"partnerId\": 101,\r\n    \"blockType\": \"BLACKLIST\",\r\n    \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/unblock",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"unblock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnBlockTests-UNBLOCK_BLOCKED_USER_COOLDOWN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c1d0a04-c5cc-4f37-a832-f9bdaf84b4d0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.successful).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.message).to.eql(\"success\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.responseCode).to.eql(\"200\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"21234567891\",\r\n    \"partnerUserId\": \"21234567891\",\r\n    \"productId\": 1,\r\n    \"partnerId\": 101,\r\n    \"blockType\": \"COOLDOWN\",\r\n    \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/unblock",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"unblock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnBlockTests-UNBLOCK_NEW_USER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c1d0a04-c5cc-4f37-a832-f9bdaf84b4d0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verify successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.successful).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Verify message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.message).to.eql(\"Not Blacklisted\");",
+							"});",
+							"",
+							"pm.test(\"Verify response code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.response.responseCode).to.eql(\"AB015\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"91234567890\",\r\n    \"partnerUserId\": \"91234567890\",\r\n    \"productId\": 1,\r\n    \"partnerId\": 101,\r\n    \"blockType\": \"BLACKLIST\",\r\n    \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/unblock",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"unblock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnBlockTests-BAD_REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c1d0a04-c5cc-4f37-a832-f9bdaf84b4d0",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": null,\r\n    \"partnerUserId\": null,\r\n    \"productId\": null,\r\n    \"partnerId\": null,\r\n    \"blockType\": \"BLACKLIST\",\r\n    \"country\": \"IN\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{URL}}/core-activity-service/rest/billing/unblock",
+					"protocol": "http",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"core-activity-service",
+						"rest",
+						"billing",
+						"unblock"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
